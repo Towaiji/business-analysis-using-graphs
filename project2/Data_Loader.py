@@ -13,7 +13,7 @@ def parse(path: list):
         with open(f) as file:
             for l in file:
                 dic = json.loads(l)
-                req_keys = ['longitude', 'latitude', 'category', 'avg_rating', 'num_of_reviews', 'hours']
+                req_keys = ['name', 'address' 'longitude', 'latitude', 'category', 'avg_rating', 'num_of_reviews', 'hours']
                 if 'state' in dic.keys() and all(key in dic.keys() for key in req_keys):
                     if dic['state'] != "Permanently closed" and all(dic[key] is not None for key in req_keys):
                         dic.pop('gmap_id')
@@ -22,8 +22,8 @@ def parse(path: list):
                         dic.pop('url')
                         dic.pop('description')
                         dic.pop('price')
-                        data.append(dic)
-        return data[0]
+                        data.append(dic.values)
+        return data
 
 
 def filter(file):
