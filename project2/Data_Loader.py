@@ -22,7 +22,8 @@ def parse(path: list):
                         dic.pop('url')
                         dic.pop('description')
                         dic.pop('price')
-                        data.append(dic.values())
+                        entry = list(dic.values())
+                        data.append(entry)
         return data
 
 
