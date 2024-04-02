@@ -45,7 +45,7 @@ class Graph:
         Preconditions:
             - item not in self._vertices
         """
-        self._vertices[item] = _Vertex(item, {})
+        self._vertices[item[1]] = _Vertex(item, {})
 
     def add_edge(self, item1: Any, item2: Any, edge_type: Any) -> None:
         """Add an edge between the two vertices with the given items in this graph.
@@ -55,9 +55,9 @@ class Graph:
         Preconditions:
             - item1 != item2
         """
-        if item1 in self._vertices and item2 in self._vertices:
-            self._vertices[item1].neighbours[edge_type].add(self._vertices[item2])
-            self._vertices[item2].neighbours[edge_type].add(self._vertices[item1])
+        if item1[1] in self._vertices and item2[1] in self._vertices:
+            self._vertices[item1[1]].neighbours[edge_type].add(self._vertices[item2[1]])
+            self._vertices[item2[1]].neighbours[edge_type].add(self._vertices[item1[1]])
 
         else:
             # We didn't find an existing vertex for both items.
@@ -92,19 +92,21 @@ class Graph:
         """
         return if should add adge
         """
-        if abs(vertex1[5] - vertex2[5]) <= 0.5:
+        print(vertex1[0])
+        print(vertex2[0])
+        if abs(float(vertex1[5]) - float(vertex2[5])) <= 0.5:
             self.add_edge(vertex1, vertex2, 'rating')
 
             # Check for minimum number of reviews
-        if vertex1[6] - vertex2[6] <= 10:
+        if abs(float(vertex1[6]) - float(vertex2[6])) <= 10:
             self.add_edge(vertex1, vertex2, 'rev_num')
 
             # Check if they share a category
         if set(vertex1[4]).intersection(set(vertex2[4])):
             self.add_edge(vertex1, vertex2, 'category')
 
-        if abs(vertex1[3] - vertex2[3]) <= 10 and abs(vertex1[4] - vertex2[4]) <= 10:
-            self.add_edge(vertex1, vertex2, 'location')
+        if abs(float(vertex1[2]) - float(vertex2[2])) <= 10 and abs(float(vertex1[3]) - float(vertex2[3])) <= 10:
+            self.add_edge(vertex1, vertex2, 'loc')
 
     def create_graph(self, data):
         """
@@ -119,4 +121,4 @@ class Graph:
             visited.append(vertex1)
             for vertex2 in self._vertices:
                 if vertex1 != vertex2 and vertex2 not in visited:
-                    self.should_add_edge(vertex1, vertex2)
+                    self.should_add_edge(self._vertices[vertex1].item, self._vertices[vertex2].item)
