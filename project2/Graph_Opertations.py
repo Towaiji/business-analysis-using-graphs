@@ -55,6 +55,12 @@ class Graph:
         Preconditions:
             - item1 != item2
         """
+        if edge_type not in self._vertices[item1[1]].neighbours:
+            self._vertices[item1[1]].neighbours[edge_type] = set()
+
+        if edge_type not in self._vertices[item2[1]].neighbours:
+            self._vertices[item2[1]].neighbours[edge_type] = set()
+
         if item1[1] in self._vertices and item2[1] in self._vertices:
             self._vertices[item1[1]].neighbours[edge_type].add(self._vertices[item2[1]])
             self._vertices[item2[1]].neighbours[edge_type].add(self._vertices[item1[1]])
@@ -92,8 +98,6 @@ class Graph:
         """
         return if should add adge
         """
-        print(vertex1[0])
-        print(vertex2[0])
         if abs(float(vertex1[5]) - float(vertex2[5])) <= 0.5:
             self.add_edge(vertex1, vertex2, 'rating')
 
@@ -116,9 +120,7 @@ class Graph:
         for item in parsed_data:
             self.add_vertex(item)
 
-        visited = []
         for vertex1 in self._vertices:
-            visited.append(vertex1)
             for vertex2 in self._vertices:
-                if vertex1 != vertex2 and vertex2 not in visited:
+                if vertex1 != vertex2:
                     self.should_add_edge(self._vertices[vertex1].item, self._vertices[vertex2].item)
