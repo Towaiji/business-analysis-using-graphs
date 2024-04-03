@@ -1,43 +1,43 @@
-import pandas as pd
-import seaborn as sns
-import matplotlib.pyplot as plt
-import json
+import plotly.graph_objs as go
+from plotly.subplots import make_subplots
 
+def visualize_graph(graph, edge_types):
+    edge_type_colors = {
+        'rating': 'blue',
+        'rev_num': 'red',
+        'category': 'green',
+        'loc': 'purple'
+    }
 
-def visualize_from_json(json_file_path, plot_type, x_column, y_column=None):
-    """
-    Visualizes data from a JSON file using seaborn.
+    # Create Plotly figure
+    fig = make_subplots()
 
-    :param json_file_path: Path to the JSON file containing the data.
-    :param plot_type: Type of plot to create ('boxplot' or 'barplot').
-    :param x_column: The column to be used on the x-axis.
-    :param y_column: The column to be used on the y-axis (optional for certain plots).
-    """
-    # Load data
-    with open(json_file_path, 'r') as file:
-        data = json.load(file)
+    node_trace = go.Scatter(x=[], y=[], hovertext=[], text=[], mode='markers+text', textposition="bottom center",
+                            hoverinfo="text", marker={'size': 10, 'color': 'LightSkyBlue'})
 
-    # Convert data to DataFrame
-    df = pd.DataFrame(data)
+    edge_traces = {edge_type: go.Scatter(x=[], y=[], line={'width': 2, 'color': edge_type_colors[edge_type]},
+                                         hoverinfo='none', mode='lines') for edge_type in edge_types}
 
-    # Create plot
-    plt.figure(figsize=(10, 6))
+    for item, vertex in graph._vertices.items():
+        x, y = vertex.item[2], vertex.item[3]  # Assuming these are positions
+        node_trace['x'] += tuple([x])
+        node_trace['y'] += tuple([y])
+        node_trace['hovertext'] += tuple([vertex.item[0]])
 
-    if plot_type == 'boxplot':
-        sns.boxplot(data=df, x=x_column, y=y_column)
-    elif plot_type == 'barplot':
-        sns.barplot(data=df, x=x_column, y=y_column)
-    else:
-        print(f"Plot type '{plot_type}' is not supported.")
-        return
+        for edge_type, neighbours in vertex.neighbours.items():
+            if edge_type in edge_types:
+                for neighbour in neighbours:
+                    edge_trace = edge_traces[edge_type]
+                    edge_trace['x'] += tuple([x, neighbour.item[2], None])
+                    edge_trace['y'] += tuple([y, neighbour.item[3], None])
 
-    # Display plot
-    plt.title(f'{plot_type.capitalize()} of {y_column} Across {x_column}')
-    plt.ylabel(y_column if y_column else 'Value')
-    plt.xlabel(x_column)
-    plt.xticks(rotation=45)
-    plt.tight_layout()
-    plt.show()
+    fig.add_trace(node_trace)
+    for edge_trace in edge_traces.values():
+        fig.add_trace(edge_trace)
 
+    fig.update_layout(showlegend=False, hovermode='closest',
+                      margin={'b': 0, 'l': 0, 'r': 0, 't': 0},
+                      xaxis={'showgrid': False, 'zeroline': False, 'showticklabels': False},
+                      yaxis={'showgrid': False, 'zeroline': False, 'showticklabels': False})
 
-#visualize_from_json('path/to/your_file.json', 'boxplot', 'category', 'avg_rating')
+    fig.show()

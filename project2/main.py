@@ -12,4 +12,4 @@ def main(data):
     """
     g = Graph()
     g.create_graph(data)
-    visualize_graph(g)
+    visualize_graph(g, ['rating', 'rev_num', 'category'])
