@@ -27,8 +27,24 @@ def parse(path: list):
         return data
 
 
-def filter(file):
-    """
+def get_user_input(prompt, default_value):
+    """Helper function to get user input with a default value."""
+    user_input = input(prompt + f" (default {default_value}): ").strip()
+    return float(user_input) if user_input else default_value
 
-    :return:
-    """
+
+def filter_data(data):
+    """Filter the data based on user inputs for various criteria."""
+    min_rating = get_user_input("Enter minimum rating", 0)
+    min_reviews = get_user_input("Enter minimum number of reviews", 0)
+    desired_category = input("Enter desired category (leave blank if no preference): ").strip()
+    desired_day = input("Enter a day to check if open (e.g., 'Monday'; leave blank if no preference): ").strip().capitalize()
+    filtered_data = []
+    for business in data:
+        category_match = desired_category.lower() in [cat.lower() for cat in business[4]] if desired_category else True
+        day_match = any(day.lower() == desired_day.lower() for day, hours in business[7]) if desired_day else True
+
+        if business[5] >= min_rating and business[6] >= min_reviews and category_match and day_match:
+            filtered_data.append(business)
+
+    return filtered_data
