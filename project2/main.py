@@ -1,7 +1,7 @@
 """
 Main operations
 """
-from Data_Loader import parse, filter
+from Data_Loader import parse, filter_data
 from Graph_Opertations import Graph, _Vertex
 from visualization import visualize_graph
 
