@@ -29,7 +29,8 @@ def parse(path: list) -> list:
         with open(f) as file:
             for line in file:
                 dic = json.loads(line)
-                req_keys = ['name', 'address', 'longitude', 'latitude', 'category', 'avg_rating', 'num_of_reviews', 'hours']
+                req_keys = ['name', 'address', 'longitude', 'latitude', 'category', 'avg_rating', 'num_of_reviews',
+                            'hours']
                 if 'state' in dic.keys() and all(key in dic.keys() for key in req_keys):
                     if dic['state'] != "Permanently closed" and all(dic[key] is not None for key in req_keys):
                         dic.pop('gmap_id')

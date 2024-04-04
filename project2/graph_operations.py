@@ -72,15 +72,9 @@ class Graph:
         cgry = set()
         cgry.add(category)
         for vertex in self._vertices:
-<<<<<<< Updated upstream:project2/Graph_Opertations.py
-            if not ((set(self._vertices[vertex].item['category']).intersection(cgry) or category == "") and
-                    self._vertices[vertex].item['avg_rating'] >= min_rating
-=======
-            # print(set(self._vertices[vertex].item['category']))
-            # print(cgry)
+
             if not ((set(self._vertices[vertex].item['category']).intersection(cgry) or category == "")
                     and self._vertices[vertex].item['avg_rating'] >= min_rating
->>>>>>> Stashed changes:project2/graph_operations.py
                     and self._vertices[vertex].item['num_of_reviews'] >= min_rev):
                 remove_list.append(vertex)
 
@@ -154,10 +148,6 @@ class Graph:
 if __name__ == "__main__":
     python_ta.check_all(config={
         'extra-imports': [],  # the names (strs) of imported modules
-<<<<<<< Updated upstream:project2/Graph_Opertations.py
         'allowed-io': [print(), input()],  # the names (strs) of functions that call print/open/input
-=======
-        'allowed-io': [print()],  # the names (strs) of functions that call print/open/input
->>>>>>> Stashed changes:project2/graph_operations.py
         'max-line-length': 120
     })
