@@ -39,8 +39,8 @@ def visualize_businesses_on_map(graph: Graph) -> None:
     # Generate the map
     fig = px.scatter_mapbox(df, lat="latitude", lon="longitude", hover_name="name",
                             color="score", size="score",
-                            color_continuous_scale=px.colors.cyclical.IceFire, size_max=15,
-                            zoom=10, mapbox_style="carto-positron")
+                            color_continuous_scale=px.colors.cyclical.IceFire, size_max=10,
+                            zoom=5, mapbox_style="carto-positron")
     fig.show()
 
 
