@@ -1,5 +1,6 @@
 """
 Main operations
+ADD MORE (CHECK PROJECT 2 WEBSITE CLEAR REQUIREMENTS ARE STATED)
 """
 from Data_Loader import get_criteria, parse, get_states
 from visualization import visualize_businesses_on_map
@@ -21,13 +22,10 @@ def main():
 
     g.filter_data(category, min_reviews, min_rating)
 
-    # Step 3: Find similar businesses
+    # Step 3: Find businesses that match criteria
     g.build_edges_based_on_criteria(category)
 
-    # Step 3: Find similar businesses based on criteria
-    g.build_edges_based_on_criteria(category, min_rating, min_reviews)
-
-    # Step 4: Visualize the similar businesses
+    # Step 5: Visualize the similar businesses
     if g.get_vertices_data():
         print(f"Found {len(g.get_vertices_data())} similar businesses. Visualizing now...")
         visualize_businesses_on_map(g)

@@ -1,4 +1,5 @@
 """
+ADD MORE (CHECK PROJECT 2 WEBSITE CLEAR REQUIREMENTS ARE STATED)
 This document is used to set up the groph class and its various function
 """
 from __future__ import annotations
@@ -44,7 +45,7 @@ class Graph:
         """
         return [vertex.item for vertex in self._vertices.values()]
 
-    def add_vertex(self, item):
+    def add_vertex(self, item: dict):
         """
         function used to add vertices to a graph,
         adds them with their given address
@@ -52,12 +53,9 @@ class Graph:
         if item['address'] not in self._vertices:
             self._vertices[item['address']] = _Vertex(item, set())
 
-    def filter_data(self, category, min_rev, min_rating):
+    def filter_data(self, category: str, min_rev: float | int, min_rating: float | int):
         """
-        :param category:
-        :param min_rev:
-        :param min_rating:
-        :return:
+        MISSING
         """
         remove_list = []
         cgry = set()
@@ -73,22 +71,24 @@ class Graph:
         for removed in remove_list:
             self._vertices.pop(removed)
 
-    def build_edges_based_on_criteria(self, category=None, rating_threshold=0.5, reviews_threshold=10):
+    def build_edges_based_on_criteria(self, category=None):
         """
         builds edges using a helper function based on relations
         """
         for vertex1 in self._vertices.values():
             for vertex2 in self._vertices.values():
-                if vertex1 != vertex2 and self.is_similar(vertex1.item, vertex2.item, category, rating_threshold,
-                                                          reviews_threshold):
+                if vertex1 != vertex2 and self.is_similar(vertex1.item, vertex2.item, category):
                     vertex1.neighbours.add(vertex2)
                     vertex2.neighbours.add(vertex1)
 
-    def is_similar(self, item1, item2, category, rating_threshold, reviews_threshold):
+    def is_similar(self, item1: dict, item2: dict, category):
         """
+        EXPLAIN WHAT CONDITIONS MUST BE MET
         checks if 2 vertices are similar
         in order to see if they satisfy the condition to add an edge between them
         """
+        rating_threshold = 0.5
+        reviews_threshold = 10
         # Check for category match if a category is specified
         if category:
             categories1 = set([c.lower() for c in item1.get('category', [])])
@@ -108,6 +108,7 @@ class Graph:
 
     def compute_scores(self):
         """
+        EXPLAIN WHY ITS CALCULATED LIKE THIS (JUST YAP FOR THIS)
         finds the score of each vertex based on calculation that relates to all filtered vertices
         """
         # Constants to adjust the influence of each factor on the final score

@@ -1,4 +1,5 @@
 """
+ADD MORE (CHECK PROJECT 2 WEBSITE CLEAR REQUIREMENTS ARE STATED)
 This document is used to load the data from the file into readable and usable data
 """
 import json
@@ -6,6 +7,7 @@ import json
 
 def parse(path: list):
     """
+    MAKE REQUIREMENT THAT ALL VALUES IN PATH ARE VALID FILES
     Command used to recieve file and output its data
     """
     data = []
