@@ -12,6 +12,7 @@ All forms of distribution of this code, whether as given or with any changes, ar
 
 This file is Copyright (c) 2024 Ali Towaiji and Tanay Langhe
 """
+import python_ta
 import pandas as pd
 import plotly.express as px
 
@@ -40,3 +41,12 @@ def visualize_businesses_on_map(graph) -> None:
                             color_continuous_scale=px.colors.cyclical.IceFire, size_max=15,
                             zoom=10, mapbox_style="carto-positron")
     fig.show()
+
+
+if __name__ == "__main__":
+
+    python_ta.check_all(config={
+        'extra-imports': [pd, px],  # the names (strs) of imported modules
+        'allowed-io': [print()],     # the names (strs) of functions that call print/open/input
+        'max-line-length': 120
+    })

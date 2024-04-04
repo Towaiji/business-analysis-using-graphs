@@ -14,6 +14,7 @@ All forms of distribution of this code, whether as given or with any changes, ar
 This file is Copyright (c) 2024 Ali Towaiji and Tanay Langhe
 """
 import json
+import python_ta
 
 
 def parse(path: list) -> list:
@@ -70,3 +71,12 @@ def get_criteria():
     category = input("Category (leave blank if no preference): ").strip()
 
     return min_rating, min_reviews, category
+
+
+if __name__ == "__main__":
+
+    python_ta.check_all(config={
+        'extra-imports': [json],  # the names (strs) of imported modules
+        'allowed-io': [print()],     # the names (strs) of functions that call print/open/input
+        'max-line-length': 120
+    })
