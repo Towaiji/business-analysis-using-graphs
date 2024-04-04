@@ -46,7 +46,7 @@ import plotly.express as px
 
 def visualize_businesses_on_map(graph):
     # Make sure the scores are already computed in the graph
-    graph.compute_scores()
+    graph.compute_scores()  # figure out proper score system
 
     # Extract data for DataFrame
     # Convert the vertex data (including the score) into a format suitable for creating a DataFrame
