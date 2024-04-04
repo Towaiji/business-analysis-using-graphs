@@ -26,6 +26,9 @@ def main():
     g.build_edges_based_on_criteria(category)
 
     # Step 5: Visualize the similar businesses
+
+    # Step 4: Visualize the similar businesses
+
     if g.get_vertices_data():
         print(f"Found {len(g.get_vertices_data())} similar businesses. Visualizing now...")
         visualize_businesses_on_map(g)
