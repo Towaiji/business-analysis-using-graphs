@@ -1,7 +1,11 @@
 import pandas as pd
 import plotly.express as px
 
+
 def visualize_businesses_on_map(graph):
+    """
+    visualizes the graph on a 3D map and pinpoints locations based on real world placement
+    """
     # Make sure the scores are already computed in the graph
     graph.compute_scores()  # figure out proper score system
 

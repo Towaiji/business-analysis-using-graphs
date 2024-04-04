@@ -25,7 +25,14 @@ def parse(path: list):
                         data.append(dic)
     return data
 
+
 def get_states():
+    """
+    Command used to get the desired American states from the user
+
+    Preconditions:
+            - all inputs are non-empty strings
+    """
     states = input("Enter desired states followed by a comma (Ex. Alabama, Texas): ").split(",")
     clean_states = []
     for state in states:
@@ -37,7 +44,11 @@ def get_states():
 
     return state_files
 
+
 def get_criteria():
+    """
+    Command used to get the criteria needed from the user
+    """
     print("Please enter the criteria for the business you are searching for:")
     min_rating = float(input("Minimum average rating (1-5): "))
     min_reviews = int(input("Minimum number of reviews: "))
