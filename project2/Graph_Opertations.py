@@ -73,10 +73,6 @@ class Graph:
         for removed in remove_list:
             self._vertices.pop(removed)
 
-
-
-
-
     def build_edges_based_on_criteria(self, category=None, rating_threshold=0.5, reviews_threshold=10):
         """
         builds edges using a helper function based on relations
