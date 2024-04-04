@@ -23,9 +23,19 @@ def parse(path: list):
                         dic.pop('description')
                         dic.pop('price')
                         data.append(dic)
-        return data
+    return data
 
-#####################################
+def get_states():
+    states = input("Enter desired states followed by a comma (Ex. Alabama, Texas): ").split(",")
+    clean_states = []
+    for state in states:
+        clean_states.append(state.strip().replace(" ", "_"))
+
+    state_files = []
+    for file in clean_states:
+        state_files.append("meta-" + file + ".json")
+
+    return state_files
 
 def get_criteria():
     print("Please enter the criteria for the business you are searching for:")
@@ -35,33 +45,3 @@ def get_criteria():
 
     # You can extend this with more criteria as needed
     return min_rating, min_reviews, category
-
-
-def get_states():
-    states = input("Enter desired states: ").strip()
-
-    # You can extend this with more criteria as needed
-    return states
-
-
-# def find_similar_businesses(database, min_rating, min_reviews, category):
-#     similar_businesses = []
-#     parsed_data = parse(database)
-#     for business in parsed_data:
-#         score = 0
-#         if float(business[5]) >= min_rating:
-#             score += 1
-#         if float(business[6]) >= min_reviews:
-#             score += 1
-#         if not category or category.lower() in [c.lower() for c in business[4]]:  # maybe require same category
-#             score += 1
-#
-#         # You can adjust the scoring system as needed
-#         if score > 0:  # This means the business matches at least one criterion
-#             business.append(score)
-#             similar_businesses.append(business)
-#
-#     # Sort businesses by their score for best matches
-#     similar_businesses.sort(key=lambda x: x[1], reverse=True)
-#
-#     return similar_businesses

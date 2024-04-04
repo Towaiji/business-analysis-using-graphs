@@ -3,8 +3,7 @@ Main operations
 """
 from Data_Loader import get_criteria, parse, get_states
 from visualization import visualize_businesses_on_map
-from Graph_Opertations import Graph, _Vertex
-
+from Graph_Opertations import Graph
 
 def main():
     """
