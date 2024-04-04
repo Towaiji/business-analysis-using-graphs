@@ -27,8 +27,8 @@ def parse(path: list) -> list:
     data = []
     for f in path:
         with open(f) as file:
-            for l in file:
-                dic = json.loads(l)
+            for line in file:
+                dic = json.loads(line)
                 req_keys = ['name', 'address', 'longitude', 'latitude', 'category', 'avg_rating', 'num_of_reviews', 'hours']
                 if 'state' in dic.keys() and all(key in dic.keys() for key in req_keys):
                     if dic['state'] != "Permanently closed" and all(dic[key] is not None for key in req_keys):
@@ -61,7 +61,7 @@ def get_states() -> list:
     return state_files
 
 
-def get_criteria():
+def get_criteria() -> (float, int, str):
     """
     Command used to get the criteria needed from the user
     """
@@ -77,6 +77,6 @@ if __name__ == "__main__":
 
     python_ta.check_all(config={
         'extra-imports': [json],  # the names (strs) of imported modules
-        'allowed-io': [print()],     # the names (strs) of functions that call print/open/input
+        'allowed-io': [print(), input()],     # the names (strs) of functions that call print/open/input
         'max-line-length': 120
     })
