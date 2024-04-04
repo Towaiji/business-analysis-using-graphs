@@ -14,6 +14,7 @@ All forms of distribution of this code, whether as given or with any changes, ar
 
 This file is Copyright (c) 2024 Ali Towaiji and Tanay Langhe
 """
+import python_ta
 from Data_Loader import get_criteria, parse, get_states
 from visualization import visualize_businesses_on_map
 from Graph_Opertations import Graph
@@ -48,3 +49,9 @@ def main() -> None:
 
 if __name__ == "__main__":
     main()
+
+    # python_ta.check_all(config={
+    #     'extra-imports': [],  # the names (strs) of imported modules
+    #     'allowed-io': [print()],     # the names (strs) of functions that call print/open/input
+    #     'max-line-length': 120
+    # })

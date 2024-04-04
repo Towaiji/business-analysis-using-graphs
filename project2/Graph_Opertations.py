@@ -15,6 +15,7 @@ This file is Copyright (c) 2024 Ali Towaiji and Tanay Langhe
 """
 from __future__ import annotations
 from typing import Any
+import python_ta
 
 
 class _Vertex:
@@ -143,3 +144,12 @@ class Graph:
 
             # Calculate the final score by combining the factors
             vertex.item['score'] = round((rating_score + review_score + connectivity_score) * 6.5)
+
+
+if __name__ == "__main__":
+
+    python_ta.check_all(config={
+        'extra-imports': [],  # the names (strs) of imported modules
+        'allowed-io': [print()],     # the names (strs) of functions that call print/open/input
+        'max-line-length': 120
+    })
