@@ -12,7 +12,7 @@
 
 \section*{Introduction}
 
-Our project dives into the intricate world of business success, focusing on unraveling the factors that significantly impact a business's prosperity in various geographic locations. Rooted in the initial curiosity about what sets successful businesses apart, we refined our research question to: ``What factors contribute most to the success of businesses in a given area?'' This exploration is not only about distinguishing successful businesses from the rest but also about understanding the broader economic implications such as job creation, innovation, and economic growth.
+Our project dives into the intricate world of business success, focusing on unraveling the factors that significantly impact a business's prosperity in various geographic locations. Rooted in the initial curiosity about what sets successful businesses apart, we refined our research question to: By setting criteria and showing which business meet such criteria is it possible to determine the factors that the business have to achieve said criteria? This question and our program is the first step of many to answering this question since we allow the user to clearly filter and limit what they are looking for in a business, which allows for further research to be done on the business that do pass the users criteria.
 
 Feedback Incorporation and Scope Adjustment:
 
@@ -20,11 +20,11 @@ In response to the feedback on our proposal, we worked to enhance our creativity
 
 \section*{How to use}
 
-We will send you the zip files of the data that may be used and the test files for faster processing. First, when you run the program, you will be given questions of which states you want to check and an example of how they should look when you type them. You may also type ``test, test2'' in order to use the test files (do not add quotations). After that, it will ask you for a minimum rating and review number, which you may enter any realistic number as the data is real as well. After that, you may add a certain category that you want to check (this can be Convenience store or Gas station) then you will be given a number of the amount of businesses that apply to this criteria then a visualization of these businesses and scores embedded in their nodes and color coding.
+We will send you the zip files of the data that may be used and the test files for faster processing. First, when you run the program, you will be given questions of which states you want to check and an example of how they should look when you type them. You may also type ``test, test2'' in order to use the test files (do not add quotations). After that, it will ask you for a minimum rating and review number, which you may enter any realistic number as the data is real as well. After that, you may add a certain category that you want to check (this can be Convenience store or Gas station or as broad as just restaurant or gas) then you will be given a number of the amount of businesses that apply to this criteria then a visualization of these businesses and scores embedded in their nodes and color coding.
 
 \section*{Datasets}
 
-We utilized the Google Local Reviews (2021) dataset, which encompasses businesses all over the United States of America. The dataset was composed of detailed business attributes like names, addresses, categories, ratings, and reviews, which all play a major role in showing a business's health, relevance, and popularity. To ensure that our data was clean and accurate we applied rigorous cleaning and filtering in order to remove any business with unreliable and non-comprehensive data. This data set showed its potential in offering rich insights on how businesses are intertwined with the location they reside in. It also showed different customer perspectives in different geographies. The data files that we utilized were JSON files for each American state and through filtering, the user may choose only some states as needed. We also have 2 test files that help visualize our project in a more controlled environment in order to showcase our program's potential.
+We utilized the Google Local Reviews (2021) dataset, which encompasses businesses all over the United States of America. The dataset was composed of detailed business attributes like names, addresses, categories, ratings, google maps id, price, hours, state and reviews, which all play a major role in showing a business's health, relevance, and popularity. To ensure that our data was clean and accurate we applied rigorous cleaning and filtering in order to remove any business with unreliable and non-comprehensive data. This removed things like google maps id which was useless, and price which were all null. This data set showed its potential in offering rich insights on how businesses are intertwined with the location they reside in. It also showed different customer perspectives in different geographies. The data files that we utilized were JSON files for each American state and through filtering, the user may choose only some states as needed. We also have 2 test files that help visualize our project in a more controlled environment in order to showcase our program's potential.
 
 \section*{Computational Overview}
 
@@ -46,6 +46,8 @@ We constructed a graph where businesses were the vertices, and the edges between
 \end{itemize}
 
 We visualized the information received from the graph in a real-life map where each business is pinpointed in its exact location in the real world. The visualization also shows a scoring system with proper color coding in order to distinguish which businesses are closest to the chosen criteria. Overall, the visualization function utilizes the information given to it from the graph in order to construct the visual.
+
+
 
 \section*{Project Evolution}
 
