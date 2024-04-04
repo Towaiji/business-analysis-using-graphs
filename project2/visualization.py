@@ -23,7 +23,7 @@ def visualize_businesses_on_map(graph):
     visualizes the graph on a 3D map and pinpoints locations based on real world placement
     """
     # Make sure the scores are already computed in the graph
-    graph.compute_scores()  # figure out proper score system
+    graph.compute_scores()
 
     # Extract data for DataFrame
     # Convert the vertex data (including the score) into a format suitable for creating a DataFrame

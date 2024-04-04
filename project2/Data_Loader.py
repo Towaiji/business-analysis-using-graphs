@@ -71,5 +71,4 @@ def get_criteria():
     min_reviews = int(input("Minimum number of reviews: "))
     category = input("Category (leave blank if no preference): ").strip()
 
-    # You can extend this with more criteria as needed
     return min_rating, min_reviews, category

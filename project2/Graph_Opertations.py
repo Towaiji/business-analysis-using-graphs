@@ -129,8 +129,8 @@ class Graph:
         """
         # Constants to adjust the influence of each factor on the final score
         rating_weight = 1
-        review_count_weight = 0.01  # Assuming review counts can be much larger than ratings
-        connectivity_weight = 0.5  # Adjust based on how much you value connectivity
+        review_count_weight = 0.01
+        connectivity_weight = 0.5
 
         # Normalize ratings and review counts to ensure fair comparison
         max_rating = max(
@@ -143,7 +143,7 @@ class Graph:
             review_score = (vertex.item.get('num_of_reviews',
                                             0) / max_reviews if max_reviews else 0) * review_count_weight
             connectivity_score = (len(vertex.neighbours) / max(1,
-                                                               len(self._vertices) - 1)) * connectivity_weight  # Normalize by the total possible connections
+                                                               len(self._vertices) - 1)) * connectivity_weight
 
             # Calculate the final score by combining the factors
             vertex.item['score'] = round((rating_score + review_score + connectivity_score) * 6.5)
