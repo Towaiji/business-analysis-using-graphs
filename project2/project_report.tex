@@ -20,7 +20,7 @@ In response to the feedback on our proposal, we worked to enhance our creativity
 
 \section*{How to use}
 
-We will send you the zip files of the data that may be used and the test files for faster processing. First, when you run the program, you will be given questions of which states you want to check and an example of how they should look when you type them. You may also type ``test, test2'' in order to use the test files (do not add quotations). After that, it will ask you for a minimum rating and review number, which you may enter any realistic number as the data is real as well. After that, you may add a certain category that you want to check (this can be Convenience store or Gas station please use these as they give u the best illustration) then you will be given a number of the amount of businesses that apply to this criteria then a visualization of these businesses and scores embedded in their nodes and color coding.
+We will attach for you the test files of the data that may be used and the test files for faster processing. They are called "meta-test.json" and "meta-test2.json". First, when you run the program, you will be given questions of which states you want to check and an example of how they should look when you type them. We will send you a zip file with all states data but recommend you to use ``test, test2'' (both or each one alone but test is more rich in data) in order to use the test files (do not add quotations). After that, it will ask you for a minimum rating and review number, which you may enter any realistic number as the data is real as well. After that, you may add a certain category that you want to check (this can be Convenience store or Gas station please use these as they give you the best illustration, but any category will work as long as you grab the category name from the database) then you will be given a number of the amount of businesses that apply to this criteria then a visualization of these businesses and scores embedded in their nodes and color coding.
 
 \section*{Datasets}
 
@@ -40,12 +40,13 @@ We constructed a graph where businesses were the vertices, and the edges between
 
 \begin{itemize}
     \item \textbf{add\_vertex}: adds vertices based on the location of the business as there can be duplicate businesses in different locations.
-    \item \textbf{build\_edges\_based\_on\_criteria}: builds the edges between the vertices by a certain criteria using a helper function "is\_similar".
+    \item \textbf{build\_edges}: builds the edges between the vertices by a certain criteria using a helper function "is\_similar".
     \item \textbf{is\_similar}: checks if the ratings, reviews, and categories match in certain limits or qualities.
     \item \textbf{compute\_scores}: computes the score based on a certain formula that takes into account the number of reviews, average rating, and the number of neighbors.
+    \item \textbf{filter\_data}: filters the data based on category, review number, rating with respect to user inputs
 \end{itemize}
 
-We visualized the information received from the graph in a real-life map where each business is pinpointed in its exact location in the real world. The visualization also shows a scoring system with proper color coding in order to distinguish which businesses are closest to the chosen criteria. Overall, the visualization function utilizes the information given to it from the graph in order to construct the visual.
+We visualized the information received from the graph in a real-life map where each business is pinpointed in its exact location in the real world. The visualization also shows a scoring system with proper color coding in order to distinguish which businesses are closest to the chosen criteria. This is done by using the latitude and longitude from the metadata to place the location and the size and score of each node is done by using a calculated score.
 
 
 
