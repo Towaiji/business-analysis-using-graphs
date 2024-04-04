@@ -15,9 +15,9 @@ All forms of distribution of this code, whether as given or with any changes, ar
 This file is Copyright (c) 2024 Ali Towaiji and Tanay Langhe
 """
 import python_ta
-from Data_Loader import get_criteria, parse, get_states
+from data_loader import get_criteria, parse, get_states
 from visualization import visualize_businesses_on_map
-from Graph_Opertations import Graph
+from graph_operations import Graph
 
 
 def main() -> None:

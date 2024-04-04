@@ -45,7 +45,7 @@ class Graph:
     """
     _vertices: dict[Any, _Vertex]
 
-    def __init__(self):
+    def __init__(self) -> None:
         self._vertices = {}
 
     def get_vertices_data(self) -> list:
@@ -72,15 +72,22 @@ class Graph:
         cgry = set()
         cgry.add(category)
         for vertex in self._vertices:
+<<<<<<< Updated upstream:project2/Graph_Opertations.py
             if not ((set(self._vertices[vertex].item['category']).intersection(cgry) or category == "") and
                     self._vertices[vertex].item['avg_rating'] >= min_rating
+=======
+            # print(set(self._vertices[vertex].item['category']))
+            # print(cgry)
+            if not ((set(self._vertices[vertex].item['category']).intersection(cgry) or category == "")
+                    and self._vertices[vertex].item['avg_rating'] >= min_rating
+>>>>>>> Stashed changes:project2/graph_operations.py
                     and self._vertices[vertex].item['num_of_reviews'] >= min_rev):
                 remove_list.append(vertex)
 
         for removed in remove_list:
             self._vertices.pop(removed)
 
-    def build_edges(self, category=None) -> None:
+    def build_edges(self, category: str = None) -> None:
         """
         Builds edges using a helper function based on relations
         """
@@ -90,7 +97,7 @@ class Graph:
                     vertex1.neighbours.add(vertex2)
                     vertex2.neighbours.add(vertex1)
 
-    def is_similar(self, item1: dict, item2: dict, category) -> bool:
+    def is_similar(self, item1: dict, item2: dict, category: Any) -> bool:
         """
         Checks if 2 vertices are similar in order to see if they satisfy the condition to add an edge between them.
         They must be within a certain rating threshold a reviews threshold and if a category is specified then
@@ -129,9 +136,9 @@ class Graph:
 
         # Normalize ratings and review counts to ensure fair comparison
         max_rating = max(
-            vertex.item.get('avg_rating', 0) for vertex in self._vertices.values() if 'avg_rating' in vertex.item)
-        max_reviews = max(vertex.item.get('num_of_reviews', 0) for vertex in self._vertices.values() if
-                          'num_of_reviews' in vertex.item)
+            v.item.get('avg_rating', 0) for v in self._vertices.values() if 'avg_rating' in v.item)
+        max_reviews = max(v.item.get('num_of_reviews', 0) for v in self._vertices.values() if
+                          'num_of_reviews' in v.item)
 
         for vertex in self._vertices.values():
             rating_score = (vertex.item.get('avg_rating', 0) / max_rating if max_rating else 0) * rating_weight
@@ -147,6 +154,10 @@ class Graph:
 if __name__ == "__main__":
     python_ta.check_all(config={
         'extra-imports': [],  # the names (strs) of imported modules
+<<<<<<< Updated upstream:project2/Graph_Opertations.py
         'allowed-io': [print(), input()],  # the names (strs) of functions that call print/open/input
+=======
+        'allowed-io': [print()],  # the names (strs) of functions that call print/open/input
+>>>>>>> Stashed changes:project2/graph_operations.py
         'max-line-length': 120
     })
