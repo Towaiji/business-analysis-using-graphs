@@ -44,13 +44,28 @@ import plotly.express as px
 #
 #     fig.show()
 
-def visualize_businesses_on_map(businesses):
-    df = pd.DataFrame([{
-        'name': b[0], 'latitude': b[2], 'longitude': b[3], 'score': b[9]
-    } for b in businesses])
+def visualize_businesses_on_map(graph):
+    # Make sure the scores are already computed in the graph
+    graph.compute_scores()
 
+    # Extract data for DataFrame
+    # Convert the vertex data (including the score) into a format suitable for creating a DataFrame
+    data = [{
+        'name': vertex.item['name'],
+        'latitude': vertex.item['latitude'],
+        'longitude': vertex.item['longitude'],
+        'score': vertex.item['score']  # Score as computed by compute_scores
+    } for vertex in graph._vertices.values()]
+
+    df = pd.DataFrame(data)
+
+    # Generate the map
     fig = px.scatter_mapbox(df, lat="latitude", lon="longitude", hover_name="name",
                             color="score", size="score",
                             color_continuous_scale=px.colors.cyclical.IceFire, size_max=15,
                             zoom=10, mapbox_style="carto-positron")
+
+    # Include your Mapbox Access Token here
+    # px.set_mapbox_access_token('YOUR_MAPBOX_ACCESS_TOKEN')
+
     fig.show()
