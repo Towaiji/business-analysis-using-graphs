@@ -18,9 +18,10 @@ def main():
     # Step 2: Get user-defined criteria
     min_rating, min_reviews, category = get_criteria()
 
+    g.filter_data(category, min_reviews, min_rating)
 
-    # Step 3: Find similar businesses based on criteria
-    g.build_edges_based_on_criteria(category, min_rating, min_reviews)
+    # Step 3: Find similar businesses
+    g.build_edges_based_on_criteria(category)
 
     # Step 4: Visualize the similar businesses
     if g.get_vertices_data():

@@ -5,7 +5,6 @@ from __future__ import annotations
 from typing import Any
 
 
-
 class _Vertex:
     """A vertex in a graph.
 
@@ -50,6 +49,31 @@ class Graph:
         if item['address'] not in self._vertices:
             self._vertices[item['address']] = _Vertex(item, set())
 
+    def filter_data(self, category, min_rev, min_rating):
+        """
+        :param category:
+        :param min_rev:
+        :param min_rating:
+        :return:
+        """
+        remove_list = []
+        cgry = set()
+        cgry.add(category)
+        for vertex in self._vertices:
+            # print(set(self._vertices[vertex].item['category']))
+            # print(cgry)
+            if not((set(self._vertices[vertex].item['category']).intersection(cgry) or category == "") and
+            self._vertices[vertex].item['avg_rating'] >= min_rating
+            and self._vertices[vertex].item['num_of_reviews'] >= min_rev):
+                remove_list.append(vertex)
+
+        for removed in remove_list:
+            self._vertices.pop(removed)
+
+
+
+
+
     def build_edges_based_on_criteria(self, category=None, rating_threshold=0.5, reviews_threshold=10):
         for vertex1 in self._vertices.values():
             for vertex2 in self._vertices.values():
@@ -66,11 +90,11 @@ class Graph:
                 return False
 
         # Check if the average rating difference is within the threshold
-        if abs(item1.get('avg_rating', 0) - item2.get('avg_rating', 0)) > rating_threshold:
+        if abs(item1['avg_rating'] - item2['avg_rating']) > rating_threshold:
             return False
 
         # Check if the number of reviews difference is within the threshold
-        if abs(item1.get('num_of_reviews', 0) - item2.get('num_of_reviews', 0)) > reviews_threshold:
+        if abs(item1['num_of_reviews'] - item2['num_of_reviews']) > reviews_threshold:
             return False
 
         return True
