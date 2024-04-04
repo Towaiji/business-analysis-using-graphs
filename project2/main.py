@@ -9,10 +9,8 @@ Visualization.py
 Copyright and Usage Information
 ===============================
 
-This file is provided solely for the personal and private use for Ali Towaiji and Tanay langhe
-and the CSC111 teaching team at the University of Toronto St. George campus. All forms of
-distribution of this code, whether as given or with any changes, are
-expressly prohibited.
+This file is provided solely for the personal and private use for Ali Towaiji and Tanay langhe.
+All forms of distribution of this code, whether as given or with any changes, are expressly prohibited.
 
 This file is Copyright (c) 2024 Ali Towaiji and Tanay Langhe
 """
@@ -21,9 +19,9 @@ from visualization import visualize_businesses_on_map
 from Graph_Opertations import Graph
 
 
-def main():
+def main() -> None:
     """
-    main function responsible for running all files
+    Main function responsible for running all files
     """
     g = Graph()
     database = get_states()  # loaded dataset of businesses
@@ -34,12 +32,13 @@ def main():
     # Get user-defined criteria
     min_rating, min_reviews, category = get_criteria()
 
+    # filter the data using the criteria given
     g.filter_data(category, min_reviews, min_rating)
 
-    # match businesses based on criteria
-    g.build_edges_based_on_criteria(category)
+    # match businesses based similarity
+    g.build_edges(category)
 
-    #Visualize the similar businesses
+    # Visualize the similar businesses
     if g.get_vertices_data():
         print(f"Found {len(g.get_vertices_data())} similar businesses. Visualizing now...")
         visualize_businesses_on_map(g)

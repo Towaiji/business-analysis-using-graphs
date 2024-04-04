@@ -8,22 +8,20 @@ and filter them according to certain criteria chosen by the user
 Copyright and Usage Information
 ===============================
 
-This file is provided solely for the personal and private use for Ali Towaiji and Tanay langhe
-and the CSC111 teaching team at the University of Toronto St. George campus. All forms of
-distribution of this code, whether as given or with any changes, are
-expressly prohibited.
+This file is provided solely for the personal and private use for Ali Towaiji and Tanay langhe.
+All forms of distribution of this code, whether as given or with any changes, are expressly prohibited.
 
 This file is Copyright (c) 2024 Ali Towaiji and Tanay Langhe
 """
 import json
 
 
-def parse(path: list):
+def parse(path: list) -> list:
     """
     Command used to recieve file and output its data
 
     Preconditions:
-            - all inputs are valid American state names or is test
+            - all inputs are valid American state names or test
     """
     data = []
     for f in path:
@@ -43,7 +41,7 @@ def parse(path: list):
     return data
 
 
-def get_states():
+def get_states() -> list:
     """
     Command used to get the desired American states from the user
 
