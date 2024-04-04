@@ -1,5 +1,18 @@
-"""
-MISSING DOCSTRING
+"""CSC111 Project 2
+
+This module contains the graph visualization function
+which utilizes the graph created in Graph_Operation.py.
+
+
+Copyright and Usage Information
+===============================
+
+This file is provided solely for the personal and private use for Ali Towaiji and Tanay langhe
+and the CSC111 teaching team at the University of Toronto St. George campus. All forms of
+distribution of this code, whether as given or with any changes, are
+expressly prohibited.
+
+This file is Copyright (c) 2024 Ali Towaiji and Tanay Langhe
 """
 import pandas as pd
 import plotly.express as px
