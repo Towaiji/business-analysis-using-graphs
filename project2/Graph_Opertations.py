@@ -109,7 +109,7 @@ class Graph:
         if set(vertex1[4]).intersection(set(vertex2[4])):
             self.add_edge(vertex1, vertex2, 'category')
 
-        if abs(float(vertex1[2]) - float(vertex2[2])) <= 10 and abs(float(vertex1[3]) - float(vertex2[3])) <= 10:
+        if abs(float(vertex1[2]) - float(vertex2[2])) <= 10 and abs(float(vertex1[3]) - float(vertex2[3])) <= 0.05:
             self.add_edge(vertex1, vertex2, 'loc')
 
     def create_graph(self, data):

@@ -48,3 +48,38 @@ def filter_data(data):
             filtered_data.append(business)
 
     return filtered_data
+
+
+
+
+#####################################
+
+def get_criteria():
+    print("Please enter the criteria for the business you are searching for:")
+    min_rating = float(input("Minimum average rating (1-5): "))
+    min_reviews = int(input("Minimum number of reviews: "))
+    category = input("Category (leave blank if no preference): ").strip()
+
+    # You can extend this with more criteria as needed
+    return min_rating, min_reviews, category
+
+
+def find_similar_businesses(database, min_rating, min_reviews, category):
+    similar_businesses = []
+    parsed_data = parse(database)
+    for business in parsed_data:
+        score = 0
+        if float(business[5]) >= min_rating:
+            score += 1
+        if float(business[6]) >= min_reviews:
+            score += 1
+        if not category or category.lower() in [c.lower() for c in business[4]]:
+            score += 1
+
+        # You can adjust the scoring system as needed
+        if score > 0:  # This means the business matches at least one criterion
+            similar_businesses.append((business, score))
+
+    # Sort businesses by their score for best matches
+    similar_businesses.sort(key=lambda x: x[1], reverse=True)
+    return similar_businesses
