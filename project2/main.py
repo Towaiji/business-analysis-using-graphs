@@ -1,6 +1,20 @@
-"""
-Main operations
-ADD MORE (CHECK PROJECT 2 WEBSITE CLEAR REQUIREMENTS ARE STATED)
+"""CSC111 Project 2
+
+This module contains the main operations function which runs the whole program using the other modules:
+Data_loader.py
+Graph_operations.py
+Visualization.py
+
+
+Copyright and Usage Information
+===============================
+
+This file is provided solely for the personal and private use for Ali Towaiji and Tanay langhe
+and the CSC111 teaching team at the University of Toronto St. George campus. All forms of
+distribution of this code, whether as given or with any changes, are
+expressly prohibited.
+
+This file is Copyright (c) 2024 Ali Towaiji and Tanay Langhe
 """
 from Data_Loader import get_criteria, parse, get_states
 from visualization import visualize_businesses_on_map

@@ -1,6 +1,19 @@
-"""
-ADD MORE (CHECK PROJECT 2 WEBSITE CLEAR REQUIREMENTS ARE STATED)
-This document is used to set up the groph class and its various function
+"""CSC111 Project 2
+
+This module contains the graph operations functions,
+every function that creates a graph, adds vertices and edges between them will be here.
+Also, there are functions for computing scores and finding if vertices are similar
+
+
+Copyright and Usage Information
+===============================
+
+This file is provided solely for the personal and private use for Ali Towaiji and Tanay langhe
+and the CSC111 teaching team at the University of Toronto St. George campus. All forms of
+distribution of this code, whether as given or with any changes, are
+expressly prohibited.
+
+This file is Copyright (c) 2024 Ali Towaiji and Tanay Langhe
 """
 from __future__ import annotations
 from typing import Any
@@ -55,7 +68,7 @@ class Graph:
 
     def filter_data(self, category: str, min_rev: float | int, min_rating: float | int):
         """
-        MISSING
+        function used to filter the data based on a certain category, minimum rating and review number
         """
         remove_list = []
         cgry = set()
@@ -83,9 +96,10 @@ class Graph:
 
     def is_similar(self, item1: dict, item2: dict, category):
         """
-        EXPLAIN WHAT CONDITIONS MUST BE MET
         checks if 2 vertices are similar
         in order to see if they satisfy the condition to add an edge between them
+        they must be within a certain rating threshold a reviews threshold
+        and if a category is specified then they must share a category
         """
         rating_threshold = 0.5
         reviews_threshold = 10
@@ -108,8 +122,10 @@ class Graph:
 
     def compute_scores(self):
         """
-        EXPLAIN WHY ITS CALCULATED LIKE THIS (JUST YAP FOR THIS)
         finds the score of each vertex based on calculation that relates to all filtered vertices
+        it divides each vertex's rating by the maximum rating and the same with the review numbers and multiplies them
+        by chosen constants and also finds its degree and devides it by the amount of vertices in the graph
+        in order to calculate a score
         """
         # Constants to adjust the influence of each factor on the final score
         rating_weight = 1

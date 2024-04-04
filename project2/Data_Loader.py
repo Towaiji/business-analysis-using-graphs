@@ -1,14 +1,29 @@
-"""
-ADD MORE (CHECK PROJECT 2 WEBSITE CLEAR REQUIREMENTS ARE STATED)
-This document is used to load the data from the file into readable and usable data
+"""CSC111 Project 2
+
+This module contains functions that run through the data files
+to clean them based on completeness and reliability
+and filter them according to certain criteria chosen by the user
+
+
+Copyright and Usage Information
+===============================
+
+This file is provided solely for the personal and private use for Ali Towaiji and Tanay langhe
+and the CSC111 teaching team at the University of Toronto St. George campus. All forms of
+distribution of this code, whether as given or with any changes, are
+expressly prohibited.
+
+This file is Copyright (c) 2024 Ali Towaiji and Tanay Langhe
 """
 import json
 
 
 def parse(path: list):
     """
-    MAKE REQUIREMENT THAT ALL VALUES IN PATH ARE VALID FILES
     Command used to recieve file and output its data
+
+    Preconditions:
+            - all inputs are valid American state names or is test
     """
     data = []
     for f in path:
@@ -58,31 +73,3 @@ def get_criteria():
 
     # You can extend this with more criteria as needed
     return min_rating, min_reviews, category
-
-
-
-def append_first_200_lines_to_existing_file(input_json_file_path):
-    """
-    Append the first 200 lines of a JSON file to an existing file named meta-test.json.
-    If meta-test.json does not exist, it will be created.
-
-    Parameters:
-    - input_json_file_path: str, the path to the input JSON file.
-    """
-    try:
-        with open(input_json_file_path, 'r') as input_file, open('meta-test.json', 'a') as output_file:
-            # Optionally, add a separator if appending to an existing file for better readability or JSON structure
-            output_file.write('\n')  # Ensure we start on a new line
-            for i in range(200):
-                line = input_file.readline()
-                if not line:  # If the file has less than 200 lines
-                    break
-                output_file.write(line)
-    except FileNotFoundError:
-        print("The input file was not found.")
-    except Exception as e:
-        print(f"An error occurred: {e}")
-
-# Example usage:
-# Replace 'path/to/your/input_json_file.json' with the actual path to your input JSON file.
-# append_first_200_lines_to_existing_file('path/to/your/input_json_file.json')
