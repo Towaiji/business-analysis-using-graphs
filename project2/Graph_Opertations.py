@@ -72,11 +72,9 @@ class Graph:
         cgry = set()
         cgry.add(category)
         for vertex in self._vertices:
-            # print(set(self._vertices[vertex].item['category']))
-            # print(cgry)
-            if not((set(self._vertices[vertex].item['category']).intersection(cgry) or category == "") and
-            self._vertices[vertex].item['avg_rating'] >= min_rating
-            and self._vertices[vertex].item['num_of_reviews'] >= min_rev):
+            if not ((set(self._vertices[vertex].item['category']).intersection(cgry) or category == "") and
+                    self._vertices[vertex].item['avg_rating'] >= min_rating
+                    and self._vertices[vertex].item['num_of_reviews'] >= min_rev):
                 remove_list.append(vertex)
 
         for removed in remove_list:
@@ -147,9 +145,8 @@ class Graph:
 
 
 if __name__ == "__main__":
-
     python_ta.check_all(config={
         'extra-imports': [],  # the names (strs) of imported modules
-        'allowed-io': [print(), input()],     # the names (strs) of functions that call print/open/input
+        'allowed-io': [print(), input()],  # the names (strs) of functions that call print/open/input
         'max-line-length': 120
     })
