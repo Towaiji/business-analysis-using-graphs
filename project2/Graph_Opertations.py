@@ -75,7 +75,24 @@ class Graph:
 
         return True
 
-    #THIS NEEDS TO BE CHANGED TO AN ACTUAL SCORE CALCULATION
     def compute_scores(self):
+        # Constants to adjust the influence of each factor on the final score
+        rating_weight = 1
+        review_count_weight = 0.01  # Assuming review counts can be much larger than ratings
+        connectivity_weight = 0.5  # Adjust based on how much you value connectivity
+
+        # Normalize ratings and review counts to ensure fair comparison
+        max_rating = max(
+            vertex.item.get('avg_rating', 0) for vertex in self._vertices.values() if 'avg_rating' in vertex.item)
+        max_reviews = max(vertex.item.get('num_of_reviews', 0) for vertex in self._vertices.values() if
+                          'num_of_reviews' in vertex.item)
+
         for vertex in self._vertices.values():
-            vertex.item['score'] = len(vertex.neighbours)
+            rating_score = (vertex.item.get('avg_rating', 0) / max_rating if max_rating else 0) * rating_weight
+            review_score = (vertex.item.get('num_of_reviews',
+                                            0) / max_reviews if max_reviews else 0) * review_count_weight
+            connectivity_score = (len(vertex.neighbours) / max(1,
+                                                               len(self._vertices) - 1)) * connectivity_weight  # Normalize by the total possible connections
+
+            # Calculate the final score by combining the factors
+            vertex.item['score'] = round((rating_score + review_score + connectivity_score) * 6.5)
