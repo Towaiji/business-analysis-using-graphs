@@ -37,24 +37,31 @@ def get_criteria():
     return min_rating, min_reviews, category
 
 
-def find_similar_businesses(database, min_rating, min_reviews, category):
-    similar_businesses = []
-    parsed_data = parse(database)
-    for business in parsed_data:
-        score = 0
-        if float(business[5]) >= min_rating:
-            score += 1
-        if float(business[6]) >= min_reviews:
-            score += 1
-        if not category or category.lower() in [c.lower() for c in business[4]]:  # maybe require same category
-            score += 1
+def get_states():
+    states = input("Enter desired states: ").strip()
 
-        # You can adjust the scoring system as needed
-        if score > 0:  # This means the business matches at least one criterion
-            business.append(score)
-            similar_businesses.append(business)
+    # You can extend this with more criteria as needed
+    return states
 
-    # Sort businesses by their score for best matches
-    similar_businesses.sort(key=lambda x: x[1], reverse=True)
 
-    return similar_businesses
+# def find_similar_businesses(database, min_rating, min_reviews, category):
+#     similar_businesses = []
+#     parsed_data = parse(database)
+#     for business in parsed_data:
+#         score = 0
+#         if float(business[5]) >= min_rating:
+#             score += 1
+#         if float(business[6]) >= min_reviews:
+#             score += 1
+#         if not category or category.lower() in [c.lower() for c in business[4]]:  # maybe require same category
+#             score += 1
+#
+#         # You can adjust the scoring system as needed
+#         if score > 0:  # This means the business matches at least one criterion
+#             business.append(score)
+#             similar_businesses.append(business)
+#
+#     # Sort businesses by their score for best matches
+#     similar_businesses.sort(key=lambda x: x[1], reverse=True)
+#
+#     return similar_businesses

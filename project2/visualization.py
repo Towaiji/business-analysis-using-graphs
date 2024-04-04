@@ -51,11 +51,11 @@ def visualize_businesses_on_map(graph):
     # Extract data for DataFrame
     # Convert the vertex data (including the score) into a format suitable for creating a DataFrame
     data = [{
-        'name': vertex.item['name'],
-        'latitude': vertex.item['latitude'],
-        'longitude': vertex.item['longitude'],
-        'score': vertex.item['score']  # Score as computed by compute_scores
-    } for vertex in graph._vertices.values()]
+        'name': vertex['name'],
+        'latitude': vertex['latitude'],
+        'longitude': vertex['longitude'],
+        'score': vertex['score']  # Score as computed by compute_scores
+    } for vertex in graph.get_vertices_data()]
 
     df = pd.DataFrame(data)
 
