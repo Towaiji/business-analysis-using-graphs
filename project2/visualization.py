@@ -15,9 +15,10 @@ This file is Copyright (c) 2024 Ali Towaiji and Tanay Langhe
 import python_ta
 import pandas as pd
 import plotly.express as px
+from graph_operations import Graph
 
 
-def visualize_businesses_on_map(graph) -> None:
+def visualize_businesses_on_map(graph: Graph) -> None:
     """
     Visualizes the graph on a 3D map and pinpoints locations based on real world placement
     """
