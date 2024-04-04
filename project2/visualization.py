@@ -7,10 +7,8 @@ which utilizes the graph created in Graph_Operation.py.
 Copyright and Usage Information
 ===============================
 
-This file is provided solely for the personal and private use for Ali Towaiji and Tanay langhe
-and the CSC111 teaching team at the University of Toronto St. George campus. All forms of
-distribution of this code, whether as given or with any changes, are
-expressly prohibited.
+This file is provided solely for the personal and private use for Ali Towaiji and Tanay langhe.
+All forms of distribution of this code, whether as given or with any changes, are expressly prohibited.
 
 This file is Copyright (c) 2024 Ali Towaiji and Tanay Langhe
 """
@@ -18,9 +16,9 @@ import pandas as pd
 import plotly.express as px
 
 
-def visualize_businesses_on_map(graph):
+def visualize_businesses_on_map(graph) -> None:
     """
-    visualizes the graph on a 3D map and pinpoints locations based on real world placement
+    Visualizes the graph on a 3D map and pinpoints locations based on real world placement
     """
     # Make sure the scores are already computed in the graph
     graph.compute_scores()

@@ -8,10 +8,8 @@ Also, there are functions for computing scores and finding if vertices are simil
 Copyright and Usage Information
 ===============================
 
-This file is provided solely for the personal and private use for Ali Towaiji and Tanay langhe
-and the CSC111 teaching team at the University of Toronto St. George campus. All forms of
-distribution of this code, whether as given or with any changes, are
-expressly prohibited.
+This file is provided solely for the personal and private use for Ali Towaiji and Tanay langhe.
+All forms of distribution of this code, whether as given or with any changes, are expressly prohibited.
 
 This file is Copyright (c) 2024 Ali Towaiji and Tanay Langhe
 """
@@ -49,7 +47,7 @@ class Graph:
     def __init__(self):
         self._vertices = {}
 
-    def get_vertices_data(self):
+    def get_vertices_data(self) -> list:
         """
         Public method to get data of all vertices in the graph.
 
@@ -58,17 +56,16 @@ class Graph:
         """
         return [vertex.item for vertex in self._vertices.values()]
 
-    def add_vertex(self, item: dict):
+    def add_vertex(self, item: dict) -> None:
         """
-        function used to add vertices to a graph,
-        adds them with their given address
+        Function used to add vertices to a graph, adds them with their given address
         """
         if item['address'] not in self._vertices:
             self._vertices[item['address']] = _Vertex(item, set())
 
-    def filter_data(self, category: str, min_rev: float | int, min_rating: float | int):
+    def filter_data(self, category: str, min_rev: float | int, min_rating: float | int) -> None:
         """
-        function used to filter the data based on a certain category, minimum rating and review number
+        Function used to filter the data based on a certain category, minimum rating and review number
         """
         remove_list = []
         cgry = set()
@@ -84,9 +81,9 @@ class Graph:
         for removed in remove_list:
             self._vertices.pop(removed)
 
-    def build_edges_based_on_criteria(self, category=None):
+    def build_edges(self, category=None) -> None:
         """
-        builds edges using a helper function based on relations
+        Builds edges using a helper function based on relations
         """
         for vertex1 in self._vertices.values():
             for vertex2 in self._vertices.values():
@@ -94,12 +91,11 @@ class Graph:
                     vertex1.neighbours.add(vertex2)
                     vertex2.neighbours.add(vertex1)
 
-    def is_similar(self, item1: dict, item2: dict, category):
+    def is_similar(self, item1: dict, item2: dict, category) -> bool:
         """
-        checks if 2 vertices are similar
-        in order to see if they satisfy the condition to add an edge between them
-        they must be within a certain rating threshold a reviews threshold
-        and if a category is specified then they must share a category
+        Checks if 2 vertices are similar in order to see if they satisfy the condition to add an edge between them.
+        They must be within a certain rating threshold a reviews threshold and if a category is specified then
+        they must share a category
         """
         rating_threshold = 0.5
         reviews_threshold = 10
@@ -120,9 +116,9 @@ class Graph:
 
         return True
 
-    def compute_scores(self):
+    def compute_scores(self) -> None:
         """
-        finds the score of each vertex based on calculation that relates to all filtered vertices
+        Finds the score of each vertex based on calculation that relates to all filtered vertices
         it divides each vertex's rating by the maximum rating and the same with the review numbers and multiplies them
         by chosen constants and also finds its degree and devides it by the amount of vertices in the graph
         in order to calculate a score
