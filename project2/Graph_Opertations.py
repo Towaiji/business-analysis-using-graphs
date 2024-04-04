@@ -37,8 +37,15 @@ class Graph:
     def __init__(self):
         self._vertices = {}
 
+    def get_vertices_data(self):
+        """
+        Public method to get data of all vertices in the graph.
 
-    #ADD FUNCTION TO GET g._vertices (SINCE MANUALLY DOING g._vertices TECHNICALLY ISNT ALLOWED SO WE LOSE MARKS)
+        Returns:
+            A list of dictionaries, each representing the data stored in a vertex.
+        """
+        return [vertex.item for vertex in self._vertices.values()]
+
 
     def add_vertex(self, item):
         if item['address'] not in self._vertices:
